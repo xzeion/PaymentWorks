@@ -1,0 +1,41 @@
+<html>
+  <style>
+    * {
+      background-color: darkgray;
+      color: white;
+    }
+
+    #red {
+      background-color: red;
+    }
+    #orange{
+      background-color: orange;
+    }
+    #blue{
+      background-color: blue;
+    }
+  </style>
+  <head>Welcome to Subway!</head>
+  <body>
+    <div>Select a line below to see its stops: </div>
+    <br>
+    {% for line in data %}
+      <form method=post>
+        <div>
+          <button id={{ line['id']|lower }} type="submit" name="line" value={{ line['id'] }}>
+            {{ line['attributes']['long_name'] }}
+          </button>
+          ID: {{ line['id'] }} NAME: {{ line['attributes']['long_name'] }}
+        </div>
+      </form>
+    {% endfor %}
+
+    {% if line %}
+      <div>{{ line }} Line Stops</div>
+      {% for stop in stops %}
+        <div>{{ stop }}</div><br>
+      {% endfor %}
+    {% endif %}
+
+  </body>
+</html>
