@@ -16,7 +16,7 @@ Once the container is finished building open your browser and navigate to:
 * I would have used proper wtforms classes and data validation. Given the scope, this was unnessicarry.
 * there was a ton of data availabe in that api. You could expand with heaps of features.
 * Added a logger and pushed logs to an appropriate external provider
-* Build a testing suite in PyTest. 
+* API mocking for the testing suite
 * refined the CSS and and page layout.
 * depending on deploy stack, prop up a web server and some ssl certs
 * Setup some form of caching for API results to reduce the number of calls and improve performance.

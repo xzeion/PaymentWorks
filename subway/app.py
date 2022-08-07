@@ -7,15 +7,14 @@ app.config['BUNDLE_ERRORS'] = True
 root_uri="http://api-v3.mbta.com/"
 
 
-def subway_routes():
-    resp = requests.get(root_uri + 'routes')
+def subway_routes(path='routes'):
+    resp = requests.get(root_uri + path)
     #NOTE: type == 1 filters the data to subway routes only
     return [x for x in resp.json()['data'] if x['attributes']['type'] == 1] if resp.ok else []
 
 
 def stops(route_id):
-    if not route_id:
-        return []
+    if not route_id: return []
     stops = requests.get(root_uri + f'stops?filter[route]={route_id}')
     return [(stop['attributes']['name'],stop['attributes']['address']) for stop in stops.json()['data']] if stops.ok else []
 
