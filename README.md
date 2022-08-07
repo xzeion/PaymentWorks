@@ -10,6 +10,9 @@ To build and run the project make sure to have docker and docker-compose install
 Once the container is finished building open your browser and navigate to:
 **http://localhost:5000**
 
+If you would like to run the testing suite the following command should suffice:
+`docker run --rm paymentworks_web pytest`
+
 ### Things I would do if I spent more time:
 * build out dataclass's for all of the data stored with numerical values (eg. the various transport types)
 * if there were a larger scope I may have gone with a blueprint view instead of a function based one.
