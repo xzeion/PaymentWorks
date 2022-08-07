@@ -1,40 +1,124 @@
+{% macro render_field(title, data) %}
+  <div class="title">
+    {{ title|upper }}: {{ data }}
+  </div>
+{% endmacro %}
+
 <html>
   <style>
     * {
-      background-color: darkgray;
       color: white;
+      font-weight: bold;
+    }
+    html {
+      width: 350px;
+      background-color: darkgray;
+    }
+
+    h2,h3 {
+      color: #2f2f2f;
+      text-align: center;
+    }
+
+    .card {
+      background-color: #2f2f2f;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .5);
+      padding: 3px 0 8px 0;
+    }
+
+    .title {
+      color: rgba(255,255,255,.8);
+      font-size: 18px;
+      margin: 5px;
+      padding-left: 5px;
+    }
+
+    .button {
+      margin: 0 10px;
+    }
+
+    button {
+      border: none;
+      border-radius: 0 0 10px 10px;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+      font-size: 18px;
     }
 
     #red {
-      background-color: red;
+      background-color: #DA291C;
     }
-    #orange{
-      background-color: orange;
+
+    #orange {
+      background-color: #ED8B00;
     }
+
     #blue{
-      background-color: blue;
+      background-color: #003DA5;
     }
+    
+    #red:hover {
+      background-color: #9f1e14;
+    }
+    
+    #orange:hover {
+      background-color: #935700;
+    }
+
+    #blue:hover {
+      background-color: #002055;
+    }
+
+    .stop {
+      margin-left: 10px;
+    }
+
+    .stop_title {
+      border-radius: 7px 7px 0 0;
+      margin-top: 5px;
+    }
+    .address {
+      font-weight: 400;
+      font-size: 12px;
+      padding-right: 10px;
+      margin-bottom: 5px;
+    }
+
   </style>
-  <head>Welcome to Subway!</head>
+  <head>
+    <h2>Welcome to Subway!</h2>
+    <h3>Select a line below to see its stops: </h3>
+  </head>
   <body>
-    <div>Select a line below to see its stops: </div>
-    <br>
     {% for line in data %}
       <form method=post>
-        <div>
-          <button id={{ line['id']|lower }} type="submit" name="line" value={{ line['id'] }}>
-            {{ line['attributes']['long_name'] }}
-          </button>
-          ID: {{ line['id'] }} NAME: {{ line['attributes']['long_name'] }}
+        <div class="card">
+          {{ render_field("id", line['id']) }}
+          {{ render_field("name", line['attributes']['long_name']) }}
+          {{ render_field("description", line['attributes']['description']) }}
+          <div class="button">
+            <button id={{ line['id']|lower }} type="submit" name="line" value={{ line['id'] }}>
+              {{ line['attributes']['long_name'] }}
+            </button>
+          </div>
         </div>
       </form>
     {% endfor %}
 
     {% if line %}
-      <div>{{ line }} Line Stops</div>
-      {% for stop in stops %}
-        <div>{{ stop }}</div><br>
-      {% endfor %}
+      <div class="card">
+        <div class="title stop_title" id={{ line|lower }}>{{ line }} Line Stops:</div>
+        {% for stop in stops %}
+        <div class="stop">{{ stop[0] }}</div>
+        <div class="stop address">{{ stop[1] }}</div>
+        {% endfor %}
+      </div>
     {% endif %}
 
   </body>
