@@ -4,7 +4,18 @@ services:
   web:
     container_name: PW
     build: .
-    command: python wsgi.py
+    #command: python wsgi.py #<-- use this when testing
+    command: gunicorn -b 0.0.0.0:5000
+      wsgi:app
+      --worker-class=eventlet 
+      --workers=5 
+      --threads=4 
+      --timeout 120 
+      --log-level=debug 
+      --log-file - 
+      --max-requests=5120 
+      --max-requests-jitter=1000 
+      --worker-tmp-dir=/dev/shm
     volumes:
       - ./subway:/src
     ports:
