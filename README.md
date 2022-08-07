@@ -23,3 +23,5 @@ If you would like to run the testing suite the following command should suffice:
 * refined the CSS and and page layout.
 * depending on deploy stack, prop up a web server and some ssl certs
 * Setup some form of caching for API results to reduce the number of calls and improve performance.
+* add a back button to the stops listing so users can easily go back to the lines selection
+
