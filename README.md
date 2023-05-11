@@ -1,7 +1,7 @@
 # PaymentWorks
 A simple coding test for PaymentWorks
 
-This coding exersize pulls code from the `https://api-v3.mbta.com/` api that serves the greater boston area
+This coding exersize pulls data from the `https://api-v3.mbta.com/` api that serves the greater boston area
 
 To build and run the project make sure to have docker and docker-compose installed on your system then run the following command:
 
